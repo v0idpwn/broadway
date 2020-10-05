@@ -967,12 +967,12 @@ defmodule BroadwayTest do
               message
             end
 
-          Process.sleep(round(:random.uniform() * 20))
+          Process.sleep(round(:rand.uniform() * 20))
           send(test_pid, {:message_handled, message.data, self()})
           message
         end,
         handle_batch: fn _batcher, batch, _batch_info, _ ->
-          Process.sleep(round(:random.uniform() * 20))
+          Process.sleep(round(:rand.uniform() * 20))
           send(test_pid, {:batch_handled, Enum.map(batch, & &1.data), self()})
           batch
         end
